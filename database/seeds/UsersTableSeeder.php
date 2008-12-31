@@ -18,5 +18,11 @@ class UsersTableSeeder extends Seeder
             'admin'=>1,
             'avatar'=>asset('avatars/avatar.png'),
         ]);
+        app\User::create([
+           'name'=>'ornab',
+            'password'=>bcrypt('ornab'),
+            'email'=>'hzamil@gmail.com',
+            'avatar'=>asset('avatars/avatar.png'),
+        ]);
     }
 }

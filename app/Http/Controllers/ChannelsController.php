@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ChannelsRequest;
+use App\Http\Requests\ChannelEditRequest;
 use Session;
 use App\Channel;
 class ChannelsController extends Controller
@@ -75,7 +76,7 @@ class ChannelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ChannelEditRequest $request, $id)
     {
         $input=$request->all();
         $channel=Channel::findOrFail($id)->update($input);
