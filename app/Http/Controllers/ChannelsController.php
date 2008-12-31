@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class ChanellsController extends Controller
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ChannelsRequest;
+use Session;
+use App\Channel;
+class ChannelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class ChanellsController extends Controller
      */
     public function index()
     {
-        //
+        $channels=Channel::all();
+        return view('channels.index',compact('channels'));
     }
 
     /**
@@ -23,7 +27,7 @@ class ChanellsController extends Controller
      */
     public function create()
     {
-        //
+        return view('channels.create');
     }
 
     /**
@@ -32,9 +36,13 @@ class ChanellsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChannelsRequest $request)
     {
-        //
+        $channel=new Channel;
+        $channel->title=$request->title;
+        $channel->save();
+        Session::flash('Success','Channel have been created');
+        return redirect()->route('channels.index');
     }
 
     /**
@@ -56,7 +64,8 @@ class ChanellsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $channel=Channel::findOrFail($id);
+        return view('channels.edit',compact('channel'));
     }
 
     /**
@@ -68,7 +77,10 @@ class ChanellsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input=$request->all();
+        $channel=Channel::findOrFail($id)->update($input);
+        Session::flash('Success','Channel have been edited successfully');
+        return redirect()->route('channels.index');
     }
 
     /**
@@ -79,6 +91,7 @@ class ChanellsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $channel=Channel::findOrFail($id)->delete();
+        return redirect()->route('channels.index');
     }
 }

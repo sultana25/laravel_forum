@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('stylesheets');
 </head>
 <body>
     <div id="app">
@@ -71,10 +72,35 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            <div class="col-md-4">
+                <a href="{{route('discussions.create')}}" class="form-control btn btn-primary">Create discussion</a>
+                <br>
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Channel
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                           @foreach($channels as $channel)
+                           
+                            <li class="list-group-item">
+                            {{$channel->title}}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                @yield('content')
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts');
 </body>
 </html>

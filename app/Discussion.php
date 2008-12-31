@@ -21,3 +21,5 @@ class Discussion extends Model
         return $this->hasMany('App\Reply');
     }
 }
+
+          
