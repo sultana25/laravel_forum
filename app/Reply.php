@@ -10,6 +10,6 @@ class Reply extends Model
     
     public function discussion()
     {
-        return $this->belongTo('App\Discussion');
+        return $this->belongsTo('App\Discussion');
     }
 }
