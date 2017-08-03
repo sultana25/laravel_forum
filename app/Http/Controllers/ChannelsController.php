@@ -41,6 +41,7 @@ class ChannelsController extends Controller
     {
         $channel=new Channel;
         $channel->title=$request->title;
+        $channel->slug=$request->title;
         $channel->save();
         Session::flash('Success','Channel have been created');
         return redirect()->route('channels.index');
