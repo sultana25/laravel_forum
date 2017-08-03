@@ -6,7 +6,7 @@
                 <div class="panel-heading">
                     <div>
                         <img src="{{$d->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
-                        <span>{{$d->user->name}}</span>
+                        <span>{{$d->user->name}} <b>{{$d->created_at->diffForHumans()}}</b></span>
                         <a href="{{route('Discussion',['slug'=>$d->slug])}}" class="btn btn-default pull-right">View</a>
                     </div>
                 </div>
