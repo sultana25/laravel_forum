@@ -44,12 +44,12 @@ class DiscussionsController extends Controller
         return view('discussions.show',compact('discussion'));
     }
     
-    public function reply($id)
+    public function reply(ReplyRequest $request,$id)
     {
         $reply=Reply::create([
             'user_id'=>Auth::id(),
             'discussion_id'=>$id,
-            'content'=>request()->content
+            'content'=>$request->content
         ]);
         
         Session::flash('success','Reply have been created successfully');

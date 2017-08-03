@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('stylesheets')
+{!!Html::style('css/parsley.css')!!}
+@endsection
 
 @section('content')
 
@@ -55,19 +58,22 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {!!Form::open(['method'=>'POST','action'=>['DiscussionsController@reply',$discussion->id]])!!}
+                    {!!Form::open(['method'=>'POST','action'=>['DiscussionsController@reply',$discussion->id],'data-parsley-validate'=>''])!!}
                     <div class="form-group">
             
-                    {!!Form::textarea('content',null,['class'=>'form-control'])!!}
+                    {!!Form::textarea('content',null,['class'=>'form-control','required'=>''])!!}
                     </div>
                     
                     <div class="form-group">
                         <div class="text-center">
-                        {!!Form::submit('Leave a comment',['class'=>'btn btn-success'])!!}
+                        {!!Form::submit('Leave a comment',['class'=>'btn btn-success '])!!}
                         </div>
                     </div>
                 </div>
             
             </div>
      
+@endsection
+@section('scripts')
+{!!Html::script('js/parsley.min.js')!!}
 @endsection
