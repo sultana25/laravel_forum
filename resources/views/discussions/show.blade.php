@@ -10,7 +10,7 @@
                 <div class="panel-heading">
                     <div>
                         <img src="{{$discussion->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
-                        <span>{{$discussion->user->name}} <b>{{$discussion->created_at->diffForHumans()}}</b></span>
+                        <span>{{$discussion->user->name}} <b>({{$discussion->user->points}})</b></span>
                         @if($discussion->is_being_watched_by_auth_user()) 
                         
                         <a href="{{route('discussion.unwatch',$discussion->id)}}" class="btn btn-default pull-right btn-xs">Unwatch</a>
@@ -38,7 +38,7 @@
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <img src="{{$best_ans->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
-                                    <span>{{$best_ans->user->name}}</span> 
+                                    <span>{{$best_ans->user->name}}<b>({{$best_ans->user->points}})</b></span> 
                                 </div>
                                 <div class="panel-body">
                                     <p>
@@ -63,9 +63,11 @@
                 <div class="panel-heading">
                     <div>
                         <img src="{{$reply->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
-                        <span>{{$reply->user->name}} <b>{{$reply->created_at->diffForHumans()}}</b></span>
+                        <span>{{$reply->user->name}} <b>({{$reply->user->points}})</b></span>
                         @if(!$best_ans)
-                              <a href="{{route('reply.best.answer',$reply->id)}}" class="btn btn-info btn-xs pull-right">Mark as best answer</a>
+                            @if(Auth::id()==$discussion->user->id)
+                                  <a href="{{route('reply.best.answer',$reply->id)}}" class="btn btn-info btn-xs pull-right">Mark as best answer</a>
+                            @endIf
                         @endif
                         
                     </div>
