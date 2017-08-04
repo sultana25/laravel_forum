@@ -11,7 +11,15 @@
                     <div>
                         <img src="{{$discussion->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
                         <span>{{$discussion->user->name}} <b>{{$discussion->created_at->diffForHumans()}}</b></span>
-                        <a href="{{route('Discussion',['slug'=>$discussion->slug])}}" class="btn btn-default pull-right">View</a>
+                        @if($discussion->is_being_watched_by_auth_user()) 
+                        
+                        <a href="{{route('discussion.unwatch',$discussion->id)}}" class="btn btn-default pull-right btn-xs">Unwatch</a>
+                        
+                        @else
+                        
+                        <a href="{{route('discussion.watch',$discussion->id)}}" class="btn btn-default pull-right btn-xs">Watch</a>
+                        
+                        @endif
                     </div>
                 </div>
 
