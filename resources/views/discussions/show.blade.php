@@ -45,6 +45,7 @@
                     <div>
                         <img src="{{$reply->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
                         <span>{{$reply->user->name}} <b>{{$reply->created_at->diffForHumans()}}</b></span>
+                        <a href="/" class="btn btn-info btn-xs pull-right">Mark as best answer</a>
                         
                     </div>
                 </div>

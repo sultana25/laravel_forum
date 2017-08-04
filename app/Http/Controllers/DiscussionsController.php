@@ -10,6 +10,8 @@ use App\Discussion;
 use App\Reply;
 use Auth;
 use Session;
+use App\User;
+use Notification;
 
 class DiscussionsController extends Controller
 {
@@ -32,6 +34,8 @@ class DiscussionsController extends Controller
             'user_id'=>Auth::id(),
             'slug'=>str_slug($request->title)
         ]);
+        
+        Notification::send($watchers,new \App\Notifications\NewReplyAdded());
         Session::flash('success','Discussion have been created');
         return redirect()->route('Discussion',['slug'=>$discussion->slug]);
         
@@ -46,11 +50,20 @@ class DiscussionsController extends Controller
     
     public function reply(ReplyRequest $request,$id)
     {
+       
+      $discussion=Discussion::find($id);
+        
         $reply=Reply::create([
             'user_id'=>Auth::id(),
             'discussion_id'=>$id,
             'content'=>$request->content
         ]);
+        
+         $watchers=array();
+        foreach($discussion->watchers as $watcher):
+            array_push($watchers,User::find($watcher->user_id));
+        endforeach;
+        Notification::send($watchers,new \App\Notifications\NewReplyAdded($discussion));
         
         Session::flash('success','Reply have been created successfully');
         return redirect()->back();
