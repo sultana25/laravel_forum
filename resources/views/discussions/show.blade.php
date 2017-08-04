@@ -75,7 +75,9 @@
                         </div>
                     </div>
                     @else
-                    <div class="text-center">Sign in to leave a reply</div>
+                    <div class="text-center">
+                        <h3>Sign in to leave a reply</h3>
+                    </div>
                     @endif
                 </div>
             

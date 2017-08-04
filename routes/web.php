@@ -42,6 +42,8 @@ Route::get('/{provider}/redirect',[
        'uses'=>'ForumsController@channel',
         'as'=>'channel'
     ]);
+
+
     
 
 Route::group(['middleware'=>'auth'],function(){
@@ -54,11 +56,11 @@ Route::group(['middleware'=>'auth'],function(){
        'uses'=>'DiscussionsController@store' ,
         'as'=>'discussions.store'
     ]);
-    
-    Route::get('discussion/{slug}',[
+     Route::get('discussion/{slug}',[
         'uses'=>'DiscussionsController@show',
         'as'=>'Discussion'
               ]);
+   
     Route::post('/discussion/reply/{id}',[
        'uses'=>'DiscussionsController@reply',
         'as'=>'discussion.reply'
