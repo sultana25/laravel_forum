@@ -38,6 +38,12 @@ Route::get('/{provider}/redirect',[
     'as'=>'social.callback'
 ]);
 
+    Route::get('/channel/{slug}',[
+       'uses'=>'ForumsController@channel',
+        'as'=>'channel'
+    ]);
+    
+
 Route::group(['middleware'=>'auth'],function(){
     Route::resource('channels','ChannelsController');
     Route::get('discussion/create',[
@@ -67,4 +73,5 @@ Route::group(['middleware'=>'auth'],function(){
         'as'=>'reply.unlike'
     ]);
     
+
 });

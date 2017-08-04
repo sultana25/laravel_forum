@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Laraforum</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Laraforum
                     </a>
                 </div>
 
@@ -77,6 +77,18 @@
                 <a href="{{route('discussions.create')}}" class="form-control btn btn-primary">Create discussion</a>
                 <br>
                 <br>
+                 <div class="panel panel-default">
+                    
+                    <div class="panel-body">
+                        <ul class="list-group">
+                           
+                            <li class="list-group-item">
+                            <a href="/forum" style="text-decoration:none">Home</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Channel
@@ -86,7 +98,7 @@
                            @foreach($channels as $channel)
                            
                             <li class="list-group-item">
-                            {{$channel->title}}
+                            <a href="{{route('channel',$channel->slug)}}" style="text-decoration:none;">{{$channel->title}}</a>
                             </li>
                             @endforeach
                         </ul>

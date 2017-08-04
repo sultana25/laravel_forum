@@ -20,7 +20,7 @@ class SocialsController extends Controller
             $user->email=$details->email;
             $user->name=$details->full_name;
         });
-        return redirect('/home');
+        return redirect('/forum');
     }
      
 }

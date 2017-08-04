@@ -25,9 +25,10 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <p>
+                     <span>
                         {{$discussion->replies->count()}}Replies
-                    </p>
+                    </span>
+                    <a href="{{route('channel',$discussion->channel->slug)}}" class="btn btn-default pull-right btn-xs">{{$discussion->channel->title}}</a>
                 </div>
             </div>
             @foreach($discussion->replies as $reply)
@@ -61,6 +62,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                    @if(Auth::check())
                     {!!Form::open(['method'=>'POST','action'=>['DiscussionsController@reply',$discussion->id],'data-parsley-validate'=>''])!!}
                     <div class="form-group">
             
@@ -72,6 +74,9 @@
                         {!!Form::submit('Leave a comment',['class'=>'btn btn-success '])!!}
                         </div>
                     </div>
+                    @else
+                    <div class="text-center">Sign in to leave a reply</div>
+                    @endif
                 </div>
             
             </div>
