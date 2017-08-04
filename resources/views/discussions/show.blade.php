@@ -30,6 +30,25 @@
                         <p>
                             {{$discussion->content}}
                         </p>
+                        
+                        <hr>
+                        @if($best_ans)
+                        <div class="text-center" style="padding:20px;">
+                            <h3 class="text-center">Best Answer</h3>
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <img src="{{$best_ans->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
+                                    <span>{{$best_ans->user->name}}</span> 
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        {{$best_ans->content}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        
                     </div>
                 </div>
                 <div class="panel-footer">
@@ -45,7 +64,9 @@
                     <div>
                         <img src="{{$reply->user->avatar}}" alt="" width="50px" height="50px">&nbsp;&nbsp;
                         <span>{{$reply->user->name}} <b>{{$reply->created_at->diffForHumans()}}</b></span>
-                        <a href="/" class="btn btn-info btn-xs pull-right">Mark as best answer</a>
+                        @if(!$best_ans)
+                              <a href="{{route('reply.best.answer',$reply->id)}}" class="btn btn-info btn-xs pull-right">Mark as best answer</a>
+                        @endif
                         
                     </div>
                 </div>

@@ -85,6 +85,10 @@ Route::group(['middleware'=>'auth'],function(){
         'as'=>'discussion.unwatch'
     ]);
     
+    Route::get('/reply/best/answer/{id}',[
+        'uses'=>'ReplyController@best_ans',
+        'as'=>'reply.best.answer'
+    ]);
     
     
     
