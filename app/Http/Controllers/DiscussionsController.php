@@ -35,7 +35,7 @@ class DiscussionsController extends Controller
             'slug'=>str_slug($request->title)
         ]);
         
-        Notification::send($watchers,new \App\Notifications\NewReplyAdded());
+       
         Session::flash('success','Discussion have been created');
         return redirect()->route('Discussion',['slug'=>$discussion->slug]);
         

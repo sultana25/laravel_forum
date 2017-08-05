@@ -8,7 +8,7 @@
                 <div class="panel-heading">Create a new channel</div>
 
                 <div class="panel-body">
-                    {!!Form::open(['method'=>'POST','action'=>'ChannelsController@store','data-parsley-validate'=>''])!!}
+                    {!!Form::open(['method'=>'POST','action'=>'ChannelsController@store',data-parsley-validate'=>''])!!}
                     <div class="form-group">
                        
                         {!!Form::label('title','Channel:')!!}
