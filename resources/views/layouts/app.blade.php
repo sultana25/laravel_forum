@@ -84,7 +84,16 @@
                         <ul class="list-group">
                            
                             <li class="list-group-item">
-                            <a href="/forum" style="text-decoration:none">Home</a>
+                                <a href="/forum" style="text-decoration:none">Home</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=me" style="text-decoration:none">My Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=solved" style="text-decoration:none">Answered Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=unsolved" style="text-decoration:none">Unanswered Discussions</a>
                             </li>
                             
                         </ul>
