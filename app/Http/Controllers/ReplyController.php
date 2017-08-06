@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReplyEditRequest;
 use Auth;
 use Session;
 use App\Like;
@@ -41,6 +42,19 @@ class ReplyController extends Controller
        Session::flash('success','reply have been marked as a best answer');
        return redirect()->back();
    }
-   
+    
+    
+    public function edit($id)
+    {
+        $reply=Reply::findOrFail($id)->first();
+        return view('replies.edit',compact('reply')); 
+    }
+   public function update(ReplyEditRequest $request,$id){
+       $reply=Reply::finOrFail($id);
+       $reply->content=$request->content;
+       $reply->save();
+       Session::flash('success','Reply updated');
+       return redirect()->route('discussion',['slug',$reply->slug]);
+   }
      
 }

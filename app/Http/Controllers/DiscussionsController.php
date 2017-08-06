@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\DiscussionRequest;
 use App\Http\Requests\ReplyRequest;
+use App\Http\Requests\DiscussionEditRequest;
 use App\Channel;
 use App\Discussion;
 use App\Reply;
@@ -72,9 +73,24 @@ class DiscussionsController extends Controller
     }
     
     
+    public function edit($slug)
+    {
+        $discussion=Discussion::where('slug',$slug)->first();
+        return view('discussions.edit',compact('discussion'));
+    }
     
-    
-    
+    public function update(DiscussionEditRequest $request,$id)
+    {
+        $discussion = Discussion::findOrFail($id);
+        
+        $discussion->content = $request->content;
+        
+        $discussion->save();
+        
+        Session::flash('success','Discussion updated.');
+        
+        return redirect()->route('discussion',['slug'=>$discussion->slug]);
+    }
     
     
 }

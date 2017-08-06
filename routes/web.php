@@ -90,6 +90,32 @@ Route::group(['middleware'=>'auth'],function(){
         'as'=>'reply.best.answer'
     ]);
     
+    Route::get('/discussions/edit/{slug}',[
+       'uses'=>'DiscussionsController@edit',
+        'as'=>'discussion.edit'
+    ]);
+    
+    Route::post('/discussions/update/{id}',[
+       'uses'=>'DiscussionsController@update',
+        'as'=>'discussions.update'
+    ]);
+    
+   
+    
+    Route::get('/reply/edit/{id}',[
+        'uses'=>'ReplyController@edit',
+        'as'=>'reply.edit'
+    ]);
+    
+    
+    Route::post('/reply/update/{id}',[
+       'uses'=>'ReplyController@update',
+        'as'=>'reply.update'
+    ]);
+    
+    
+    
+    
     
     
 

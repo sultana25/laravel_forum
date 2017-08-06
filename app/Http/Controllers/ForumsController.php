@@ -16,7 +16,7 @@ class ForumsController extends Controller
         switch(request('filter'))
         {
             case 'me':
-                $results=Discussion::where('user_id',Auth::id())->paginate(2);
+                $results=Discussion::where('user_id',Auth::id())->paginate(1);
                 break;
                 
             case 'solved':
