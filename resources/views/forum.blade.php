@@ -22,7 +22,8 @@
                     <div class="text-center">
                         <h5>{{$d->title}}</h5>
                         <p>
-                            {{str_limit($d->content,100)}}
+                            
+                            {!! Markdown::convertToHtml(str_limit($d->content,100))!!}
                         </p>
                     </div>
                 </div>

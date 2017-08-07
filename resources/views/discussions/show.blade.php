@@ -38,7 +38,7 @@
                         <h5>{{$discussion->title}}</h5>
                         <hr>
                         <p>
-                            {{$discussion->content}}
+                            {!! Markdown::convertToHtml($discussion->content)!!}
                         </p>
                         
                         <hr>
@@ -52,7 +52,8 @@
                                 </div>
                                 <div class="panel-body">
                                     <p>
-                                        {{$best_ans->content}}
+                                        {!! Markdown::convertToHtml($best_ans->content)!!}
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -99,7 +100,7 @@
                     <div class="text-center">
                         
                         <p>
-                            {{$reply->content}}
+                            {!! Markdown::convertToHtml($reply->content)!!}
                         </p>
                     </div>
                 </div>
